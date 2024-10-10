@@ -88,8 +88,10 @@ npm install
 Automagicamente todas as dependências serão instaladas. 
 
 
-<!-- Mas se tu tá criando do zero, segue o fio do tio: -->
-> **Mas se tu tá criando do zero, segue o fio do tio:**
+---
+
+Mas se tu tá criando do zero, segue o fio do tio.
+> **Instalar as dependências manualmente:**
 
 > Nodemon para facilitar a rodação e o atualizamento do server:
 ```
@@ -138,4 +140,5 @@ npm i pg
 }
 ```
 
+---
 
