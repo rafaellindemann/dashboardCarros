@@ -6,7 +6,7 @@ const app = express();
 const pool = new Pool({
     user: 'postgres', // Substitua pelo seu usuário do PostgreSQL
     host: 'localhost',
-    database: 'controle_frota', // Nome da sua database
+    database: 'alugaCarros', // Nome da sua database
     password: 'postgre', // Substitua pela sua senha
     port: 5432, // Porta padrão do PostgreSQL
 });

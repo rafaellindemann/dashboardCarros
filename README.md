@@ -78,7 +78,7 @@ depois: yes e <enter>
 
 Depois disso é pra ter aparecido o arquivo package.json na pasta 'backend'.
 
-## Dependências
+## Dependências do backend
 Chegou a hora de instalar as dependências. Não são muitas, mas são de verdade...
 
 Se você clonou o projeto, apenas rode:
@@ -105,6 +105,11 @@ npm i express
 > Biblioteca pg porque ela sabe conversar com um banco PostgreSQL melhor que tu
 ```
 npm i pg
+```
+
+> Biblioteca cors pra teu front depois poder conversar com o back
+```
+npm i cors
 ```
 
 > Aproveita e já coloca no package.json o script pra rodar o server. Lá no objetinho de scripts deve ter um chamado 'tests'. Arranca ele fora o põe o seguinte no lugar: 
@@ -134,11 +139,21 @@ npm i pg
     "nodemon": "^3.1.7"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.1",
     "pg": "^8.13.0"
   }
 }
+
 ```
 
 ---
+
+
+## Rodar o server
+```
+npm start
+```
+
+Nesse momento, se acessar a url 'http://localhost:3000/carros' no navegador você já deve receber a resposta com um arrays dos 10 carros...
 
