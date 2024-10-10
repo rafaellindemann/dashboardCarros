@@ -85,7 +85,7 @@ Se você clonou o projeto, apenas rode:
 ```
 npm install
 ```
-Automagicamente todas as dependências serão instaladas. 
+Automagicamente todas as dependências serão instaladas. Agora pule para o passo 'Rodar o server'. 
 
 
 ---
