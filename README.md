@@ -85,33 +85,32 @@ Se você clonou o projeto, apenas rode:
 ```
 npm install
 ```
-Automagicamente todas as dependências serão instaladas. Mas se tu tá criando do zero, segue o fio do tio:
-
-<div style="border: 1px solid #000; padding: 10px; margin: 10px 0;">
+Automagicamente todas as dependências serão instaladas. 
 
 
+<!-- Mas se tu tá criando do zero, segue o fio do tio: -->
+> **Mas se tu tá criando do zero, segue o fio do tio:**
 
-
-Nodemon para facilitar a rodação e o atualizamento do server:
+> Nodemon para facilitar a rodação e o atualizamento do server:
 ```
 npm i nodemon --save-dev
 ```
-Express pra facilitar tua vida criando o server
+> Express pra facilitar tua vida criando o server
 ```
 npm i express
 ```
 
-Biblioteca pg porque ela sabe conversar com um banco PostgreSQL melhor que tu
+> Biblioteca pg porque ela sabe conversar com um banco PostgreSQL melhor que tu
 ```
 npm i pg
 ```
 
-Aproveita e já coloca no package.json o script pra rodar o server. Lá no objetinho de scripts deve ter um chamado 'tests'. Arranca ele fora o põe o seguinte no lugar: 
+> Aproveita e já coloca no package.json o script pra rodar o server. Lá no objetinho de scripts deve ter um chamado 'tests'. Arranca ele fora o põe o seguinte no lugar: 
 ```
 "start": "nodemon src/index.js"
 ```
 
-O arquivo 'package.json' deve estar mais ou menos como isso aqui:
+> O arquivo 'package.json' deve estar mais ou menos como isso aqui:
 ```
 {
   "name": "dashboardcarros",
@@ -138,9 +137,5 @@ O arquivo 'package.json' deve estar mais ou menos como isso aqui:
   }
 }
 ```
-</div>
 
-> **Procedimento:**
-> 1. Passo 1: Faça isso
-> 2. Passo 2: Faça aquilo
-> 3. Passo 3: Finalize assim
+
