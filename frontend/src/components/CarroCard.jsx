@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CarCard({ carro, buscarCarros }) {
+function CarroCard({ carro, buscarCarros }) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedCar, setEditedCar] = useState({ ...carro });
 
@@ -13,7 +13,7 @@ function CarCard({ carro, buscarCarros }) {
         buscarCarros();
     };
 
-    const handleEditCar = async () => {
+    const editarCarro = async () => {
         await fetch(`http://localhost:3000/carros/${carro.id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -23,7 +23,7 @@ function CarCard({ carro, buscarCarros }) {
         setIsEditing(false);
     };
 
-    const handleDeleteCar = async () => {
+    const deletarCarro = async () => {
         const confirmed = window.confirm("Tem certeza de que deseja deletar este carro?");
         if (confirmed) {
             await fetch(`http://localhost:3000/carros/${carro.id}`, {
@@ -34,9 +34,12 @@ function CarCard({ carro, buscarCarros }) {
     };
 
     return (
-        <div className="car-card">
+        <div className="carro-card">
             <h3>{carro.modelo}</h3>
-            <p>Marca: {carro.marca}</p>
+            <p>Cor: {carro.cor}</p>
+            <p>KM: {carro.km}</p>
+            <p>Placa: {carro.placa}</p>
+            <p>Situação: {carro.situacao}</p>
             
             {carro.situacao === 'uso' && (
                 <>
@@ -52,9 +55,7 @@ function CarCard({ carro, buscarCarros }) {
             )}
 
             <button onClick={() => setIsEditing(true)}>Editar</button>
-            <button onClick={handleDeleteCar}>Deletar</button>
-
-            {/* modal de edit tá doido, mostra marca que não existe e não mostra o resto*** */}
+            <button onClick={deletarCarro}>Deletar</button>
 
             {isEditing && (
                 <div className="modal">
@@ -69,15 +70,31 @@ function CarCard({ carro, buscarCarros }) {
                             />
                         </label>
                         <label>
-                            Marca:
+                            Cor:
                             <input
                                 type="text"
-                                value={editedCar.marca}
-                                onChange={(e) => setEditedCar({ ...editedCar, marca: e.target.value })}
+                                value={editedCar.cor}
+                                onChange={(e) => setEditedCar({ ...editedCar, cor: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            KM:
+                            <input
+                                type="number"
+                                value={editedCar.km}
+                                onChange={(e) => setEditedCar({ ...editedCar, km: Number(e.target.value) })}
+                            />
+                        </label>
+                        <label>
+                            Placa:
+                            <input
+                                type="text"
+                                value={editedCar.placa}
+                                onChange={(e) => setEditedCar({ ...editedCar, placa: e.target.value })}
                             />
                         </label>
                         <div className="modal-buttons">
-                            <button onClick={handleEditCar}>Salvar</button>
+                            <button onClick={editarCarro}>Salvar</button>
                             <button onClick={() => setIsEditing(false)}>Cancelar</button>
                         </div>
                     </div>
@@ -87,4 +104,4 @@ function CarCard({ carro, buscarCarros }) {
     );
 }
 
-export default CarCard;
+export default CarroCard;

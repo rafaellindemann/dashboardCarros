@@ -90,6 +90,33 @@ app.delete('/carros/:id', async (req, res) => {
     }
 });
 
+// Rota para adicionar um cliente
+app.post('/clientes', async (req, res) => {
+    const { cpf, nome_completo, data_nascimento, email, telefone } = req.body;
+    try {
+        const result = await pool.query(
+            'INSERT INTO clientes (cpf, nome_completo, data_nascimento, email, telefone) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            [cpf, nome_completo, data_nascimento, email, telefone]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Erro ao adicionar cliente' });
+    }
+});
+
+// Rota para buscar todos os clientes
+app.get('/clientes', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM clientes');
+        res.json(result.rows);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Erro ao buscar clientes' });
+    }
+});
+
+
 app.listen(3000, () => {
     console.log('Servidor rodando na porta 3000');
 });

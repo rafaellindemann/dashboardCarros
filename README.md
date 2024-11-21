@@ -52,6 +52,19 @@ INSERT INTO carros (modelo, cor, km, placa, situacao) VALUES
 
 ```
 
+## Criação da tabela de clientes
+Execute esta query para criar a tabela de clientes:
+```
+CREATE TABLE clientes (
+    cpf VARCHAR(11) PRIMARY KEY,
+    nome_completo VARCHAR(150) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    email VARCHAR(150),
+    telefone VARCHAR(15)
+);
+```
+
+
 # backend
 
 ### Criação do projeto em node 

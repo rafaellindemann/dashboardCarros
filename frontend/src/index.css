@@ -45,7 +45,7 @@ header {
   align-items: center;
 }
 
-.book-card {
+.carro-card {
   display: flex;
   flex-direction: column;
   gap: 2px;
