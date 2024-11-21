@@ -58,25 +58,25 @@ function Card({ carro, buscarCarros }) {
   };
 
   return (
-    <div className="carro-card">
+    <div className="card">
       <h3>{carro.modelo}</h3>
       <p>Cor: {carro.cor}</p>
       <p>KM: {carro.km}</p>
       <p>Placa: {carro.placa}</p>
-      <p>Situação: {carro.status}</p>
-      {carro.status === 'disponivel' && (
+      <p>Situação: {carro.situacao}</p>
+      {carro.situacao === 'uso' && (
         <>
           <button onClick={() => alterarSituacao('alugado')}>Alugar</button>
           <button onClick={() => alterarSituacao('manutencao')}>Manutenção</button>
         </>
       )}
-      {carro.status === 'alugado' && (
-        <button onClick={() => alterarSituacao('disponivel')}>Devolver</button>
+      {carro.situacao === 'alugado' && (
+        <button onClick={() => alterarSituacao('uso')}>Devolver</button>
       )}
-      {carro.status === 'manutencao' && (
-        <button onClick={() => alterarSituacao('disponivel')}>Finalizar Manutenção</button>
+      {carro.situacao === 'manutencao' && (
+        <button onClick={() => alterarSituacao('uso')}>Finalizar Manutenção</button>
       )}
-      {isEditing ? (
+      {isEditing && (
         <div>
           <input
             value={editedCar.modelo}
@@ -98,7 +98,8 @@ function Card({ carro, buscarCarros }) {
           <button onClick={editarCarro}>Salvar</button>
           <button onClick={() => setIsEditing(false)}>Cancelar</button>
         </div>
-      ) : (
+      )}
+      {!isEditing && (
         <>
           <button onClick={() => setIsEditing(true)}>Editar</button>
           <button onClick={deletarCarro}>Deletar</button>
@@ -133,3 +134,5 @@ function Card({ carro, buscarCarros }) {
 }
 
 export default Card;
+
+

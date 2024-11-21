@@ -1,0 +1,95 @@
+:root {
+  --cor-texto: #000000;
+  --cor-fundo: #ffffff;
+  --cor-fundo-destaque: #0056b3;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  margin: 0;
+}
+
+button {
+  background-color: var(--cor-fundo-destaque);
+  color: var(--cor-fundo);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: var(--cor-fundo-destaque);
+  color: var(--cor-fundo);
+}
+
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.coluna-dashboard {
+  flex: 1;
+  margin: 8px;
+  padding: 16px;
+  background-color: var(--cor-fundo);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid var(--cor-fundo-destaque);
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+  /* box-shadow: 0 0 0 0.1em var(--cor-fundo-destaque); */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: var(--cor-fundo);
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
