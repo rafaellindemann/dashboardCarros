@@ -64,6 +64,18 @@ CREATE TABLE clientes (
 );
 ```
 
+## Criação da tabela de alugueis
+
+```
+CREATE TABLE alugueis (
+    id SERIAL PRIMARY KEY,
+    id_carro INT NOT NULL REFERENCES carros(id),
+    cpf_cliente VARCHAR(11) REFERENCES clientes(cpf),
+    data_retirada DATE NOT NULL,
+    data_prevista_entrega DATE NOT NULL,
+    devolucao BOOLEAN DEFAULT FALSE
+);
+```
 
 # backend
 

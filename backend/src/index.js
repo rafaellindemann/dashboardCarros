@@ -56,24 +56,99 @@ app.post('/carros', async (req, res) => {
     }
 });
 
-// Rota para atualizar um carro
 app.put('/carros/:id', async (req, res) => {
     const { id } = req.params;
-    const { modelo, cor, km, placa, situacao } = req.body;
+    const { modelo, cor, km, placa, situacao, cpf_cliente, data_retirada, data_prevista_entrega } = req.body;
     try {
-        const result = await pool.query(
-            'UPDATE carros SET modelo = $1, cor = $2, km = $3, placa = $4, situacao = $5 WHERE id = $6 RETURNING *',
-            [modelo, cor, km, placa, situacao, id]
+      // Atualizar o carro
+      const updateResult = await pool.query(
+        'UPDATE carros SET modelo = $1, cor = $2, km = $3, placa = $4, situacao = $5 WHERE id = $6 RETURNING *',
+        [modelo, cor, km, placa, situacao, id]
+      );
+  
+      if (updateResult.rows.length === 0) {
+        return res.status(404).json({ error: 'Carro não encontrado' });
+      }
+  
+      // Criar aluguel se situação for "alugado"
+      if (situacao === 'alugado') {
+        await pool.query(
+          'INSERT INTO alugueis (id_carro, cpf_cliente, data_retirada, data_prevista_entrega) VALUES ($1, $2, $3, $4)',
+          [id, cpf_cliente, data_retirada, data_prevista_entrega]
         );
-        if (result.rows.length === 0) {
-            return res.status(404).json({ error: 'Carro não encontrado' });
-        }
-        res.json(result.rows[0]);
+      }
+  
+      // Atualizar devolução se situação for "uso" (devolvido)
+      if (situacao === 'uso') {
+        await pool.query(
+          'UPDATE alugueis SET devolucao = true WHERE id_carro = $1 AND devolucao = false',
+          [id]
+        );
+      }
+  
+      res.json(updateResult.rows[0]);
     } catch (err) {
-        console.error(err.message);
-        res.status(500).json({ error: 'Erro ao atualizar carro' });
+      console.error(err.message);
+      res.status(500).json({ error: 'Erro ao atualizar carro e registrar aluguel/devolução' });
     }
-});
+  });
+
+
+// Atualizar um carro e registrar aluguel se situacao for "alugado"
+// app.put('/carros/:id', async (req, res) => {
+//     const { id } = req.params;
+//     const { modelo, cor, km, placa, situacao, cpf_cliente, data_retirada, data_prevista_entrega } = req.body;
+
+//     try {
+//         // Atualizar o carro
+//         const updateResult = await pool.query(
+//             'UPDATE carros SET modelo = $1, cor = $2, km = $3, placa = $4, situacao = $5 WHERE id = $6 RETURNING *',
+//             [modelo, cor, km, placa, situacao, id]
+//         );
+
+//         if (updateResult.rows.length === 0) {
+//             return res.status(404).json({ error: 'Carro não encontrado' });
+//         }
+
+//         // Criar aluguel se situação for "alugado"
+//         if (situacao === 'alugado') {
+//             if (!cpf_cliente || !data_retirada || !data_prevista_entrega) {
+//                 return res.status(400).json({ error: 'Informações do aluguel incompletas' });
+//             }
+
+//             await pool.query(
+//                 'INSERT INTO alugueis (id_carro, cpf_cliente, data_retirada, data_prevista_entrega) VALUES ($1, $2, $3, $4)',
+//                 [id, cpf_cliente, data_retirada, data_prevista_entrega]
+//             );
+//         }
+
+//         res.json(updateResult.rows[0]);
+//     } catch (err) {
+//         console.error(err.message);
+//         res.status(500).json({ error: 'Erro ao atualizar carro e registrar aluguel' });
+//     }
+// });
+
+
+
+// Rota para atualizar um carro
+// app.put('/carros/:id', async (req, res) => {
+//     const { id } = req.params;
+//     const { modelo, cor, km, placa, situacao } = req.body;
+//     try {
+//         const result = await pool.query(
+//             'UPDATE carros SET modelo = $1, cor = $2, km = $3, placa = $4, situacao = $5 WHERE id = $6 RETURNING *',
+//             [modelo, cor, km, placa, situacao, id]
+//         );
+//         if (result.rows.length === 0) {
+//             return res.status(404).json({ error: 'Carro não encontrado' });
+//         }
+//         res.json(result.rows[0]);
+//     } catch (err) {
+//         console.error(err.message);
+//         res.status(500).json({ error: 'Erro ao atualizar carro' });
+//     }
+// });
 
 // Rota para deletar um carro
 app.delete('/carros/:id', async (req, res) => {
