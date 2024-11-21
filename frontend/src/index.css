@@ -45,7 +45,7 @@ header {
   align-items: center;
 }
 
-.carro-card {
+.card {
   display: flex;
   flex-direction: column;
   gap: 2px;

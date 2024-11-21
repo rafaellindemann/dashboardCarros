@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CarroCard from './components/CarroCard';
+import Card from './components/Card';
 
 function App() {
   const [carros, setCarros] = useState([]);
@@ -96,19 +96,19 @@ function App() {
         <div className="coluna-dashboard">
           <h2>Em Uso</h2>
           {filtroCarrosPorSituacao('uso').map(carro => (
-            <CarroCard key={carro.id} carro={carro} buscarCarros={buscarCarros} clientes={clientes} />
+            <Card key={carro.id} carro={carro} buscarCarros={buscarCarros} clientes={clientes} />
           ))}
         </div>
         <div className="coluna-dashboard">
           <h2>Alugados</h2>
           {filtroCarrosPorSituacao('alugado').map(carro => (
-            <CarroCard key={carro.id} carro={carro} buscarCarros={buscarCarros} clientes={clientes} />
+            <Card key={carro.id} carro={carro} buscarCarros={buscarCarros} clientes={clientes} />
           ))}
         </div>
         <div className="coluna-dashboard">
           <h2>Em Manutenção</h2>
           {filtroCarrosPorSituacao('manutencao').map(carro => (
-            <CarroCard key={carro.id} carro={carro} buscarCarros={buscarCarros} clientes={clientes} />
+            <Card key={carro.id} carro={carro} buscarCarros={buscarCarros} clientes={clientes} />
           ))}
         </div>
       </div>
