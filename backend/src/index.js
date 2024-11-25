@@ -4,21 +4,21 @@ const { Pool } = require('pg');
 
 const app = express();
 
-// const pool = new Pool({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'aluguelCarros',
-//   password: 'postgre',
-//   port: 5432,
-// });
-
 const pool = new Pool({
-    user: 'local', // Substitua pelo seu usuário do PostgreSQL
-    host: 'localhost',
-    database: 'alugaCarros', // Nome da sua database
-    password: '12345', // Substitua pela sua senha
-    port: 5432, // Porta padrão do PostgreSQL
+  user: 'postgres',
+  host: 'localhost',
+  database: 'alugaCarros',
+  password: 'postgre',
+  port: 5432,
 });
+
+// const pool = new Pool({
+//     user: 'local', // Substitua pelo seu usuário do PostgreSQL
+//     host: 'localhost',
+//     database: 'alugaCarros', // Nome da sua database
+//     password: '12345', // Substitua pela sua senha
+//     port: 5432, // Porta padrão do PostgreSQL
+// });
 
 app.use(cors());
 app.use(express.json());
