@@ -1,6 +1,45 @@
 
 //todo: atualizar para 2 tabelas
 
+temp
+estudantes: matrícula, nome completo, data de nascimento, e-mail e telefone
+
+==================================================
+Estudante:
+  id, 
+  nome, 
+  e-mail.
+
+Livro:
+  id do livro, 
+  id do usuário, 
+  nome do livro, 
+  categoria,
+  estado (novo, normal e antigo), 
+  data de lançamento 
+  status (a fazer, fazendo e pronto)
+==================================================
+
+
+Tarefa:
+Usuário: 
+  id, 
+  nome, 
+  e-mail.
+
+Tarefa: 
+  id da tarefa, 
+  id do usuário, 
+  descrição da tarefa, 
+  nome do setor,
+  prioridade (baixa, média e alta), 
+  data de cadastro e 
+  status (a fazer, fazendo e pronto)
+
+
+
+
+
 # dashboardCarros
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
