@@ -96,23 +96,24 @@ INSERT INTO carros (modelo, cor, km, status, id_usuario, data_aluguel) VALUES
 ('Ecto-1 Ghostbusters', 'Branco', 150000, 'disponivel', NULL, NULL),
 ('DeLorean DMC-12', 'Prata', 88000, 'disponivel', NULL, NULL),
 ('Batmóvel 1989', 'Preto', 50000, 'manutencao', NULL, NULL),
-('Jeep Wrangler Jurassic Park', 'Verde e Vermelho', 75000, 'alugado', 41, '2024-11-20'),
+('Jeep Wrangler Jurassic Park', 'Verde e Vermelho', 75000, 'alugado', 11, '2024-11-20'),
 ('Máquina Mistério', 'Verde e Laranja', 100000, 'disponivel', NULL, NULL),
-('KITT Knight Rider', 'Preto', 200000, 'alugado', 52, '2024-11-21'),
+('KITT Knight Rider', 'Preto', 200000, 'alugado', 22, '2024-11-21'),
 ('Aston Martin DB5 007', 'Prata', 30000, 'disponivel', NULL, NULL),
-('Ford Mustang GT Bullitt', 'Verde', 60000, 'alugado', 63, '2024-11-22'),
+('Ford Mustang GT Bullitt', 'Verde', 60000, 'alugado', 23, '2024-11-22'),
 ('Herbie Fusca 53', 'Branco', 250000, 'manutencao', NULL, NULL),
-('Dodge Charger Fast & Furious', 'Preto', 80000, 'alugado', 54, '2024-11-23'),
+('Dodge Charger Fast & Furious', 'Preto', 80000, 'alugado', 14, '2024-11-23'),
 ('Fuscão Preto', 'Preto', 90000, 'disponivel', NULL, NULL),
 ('Mini Cooper The Italian Job', 'Vermelho', 70000, 'disponivel', NULL, NULL),
-('Ford Explorer Jurassic Park', 'Verde e Amarelo', 65000, 'alugado', 45, '2024-11-24'),
+('Ford Explorer Jurassic Park', 'Verde e Amarelo', 65000, 'alugado', 5, '2024-11-24'),
 ('Chevrolet Camaro Bumblebee', 'Amarelo', 40000, 'disponivel', NULL, NULL),
 ('Plymouth Fury Christine', 'Vermelho', 110000, 'manutencao', NULL, NULL),
 ('Cadillac Miller-Meteor Ecto-1A', 'Branco', 180000, 'disponivel', NULL, NULL),
-('Lotus Esprit S1 007', 'Branco', 35000, 'alugado', 56, '2024-11-25'),
+('Lotus Esprit S1 007', 'Branco', 35000, 'alugado', 6, '2024-11-25'),
 ('Ford Falcon XB GT Mad Max', 'Preto', 120000, 'disponivel', NULL, NULL),
 ('Caminhão do João', 'Prata', 95000, 'manutencao', NULL, NULL),
 ('Chevrolet Corvette Stingray', 'Vermelho', 55000, 'disponivel', NULL, NULL);
+
 
 ```
 
