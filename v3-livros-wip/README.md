@@ -20,47 +20,18 @@ Livro:
   status (disponivel, emprestado e indisponivel)
   -------------------------------------------------
 
-  -- Tabela de estudantes
-CREATE TABLE estudantes (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL
-);
 
--- Tabela de livros
-CREATE TABLE livros (
-    id SERIAL PRIMARY KEY,
-    id_usuario INTEGER REFERENCES estudantes(id),
-    nome VARCHAR(100) NOT NULL,
-    categoria VARCHAR(50),
-    estado VARCHAR(20) NOT NULL CHECK (estado IN ('novo', 'normal', 'antigo')),
-    data_lancamento DATE NOT NULL,
-    status VARCHAR(20) NOT NULL DEFAULT 'disponivel' CHECK (status IN ('disponivel', 'emprestado', 'indisponivel'))
-);
 
 ==================================================
 
 
-Tarefa:
-Usuário: 
-  id, 
-  nome, 
-  e-mail.
-
-Tarefa: 
-  id da tarefa, 
-  id do usuário, 
-  descrição da tarefa, 
-  nome do setor,
-  prioridade (baixa, média e alta), 
-  data de cadastro e 
-  status (a fazer, fazendo e pronto)
 
 
 
 
 
-# dashboardCarros
+
+# dashboardBiblioteca
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
@@ -74,17 +45,20 @@ Um dashboard simples full JS e postgres para uma locadora de carros, classifican
 
 # BD PostgreSQL
 
-## Criação da tabela de carros
+## Criação da tabela de livros
 Abra o pgAdmin (ou qualquer outra ferramenta que lide com PostgreSQL) e execute o script SQL para criar a tabela de carros:
 
 ```
-CREATE TABLE carros (
+
+-- Tabela de livros
+CREATE TABLE livros (
     id SERIAL PRIMARY KEY,
-    modelo VARCHAR(100) NOT NULL,
-    cor VARCHAR(50) NOT NULL,
-    km INTEGER NOT NULL CHECK (km >= 0),
-    placa VARCHAR(10) UNIQUE NOT NULL,
-    situacao VARCHAR(20) NOT NULL CHECK (situacao IN ('uso', 'alugado', 'manutencao'))
+    id_usuario INTEGER REFERENCES estudantes(id),
+    nome VARCHAR(100) NOT NULL,
+    categoria VARCHAR(50),
+    estado VARCHAR(20) NOT NULL CHECK (estado IN ('novo', 'normal', 'antigo')),
+    data_lancamento DATE NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'disponivel' CHECK (status IN ('disponivel', 'emprestado', 'indisponivel'))
 );
 ```
 
@@ -100,44 +74,42 @@ situacao: Situação do carro, permitindo apenas os valores uso, alugado, ou man
 ## Criação de registros iniciais pra testes
 Execute esta query para inserir 10 carros para iniciar a diversão:
 ```
-INSERT INTO carros (modelo, cor, km, placa, situacao) VALUES
-('Honda Civic', 'Preto', 12000, 'ABC1234', 'uso'),
-('Toyota Corolla', 'Branco', 8500, 'DEF5678', 'alugado'),
-('Chevrolet Onix', 'Prata', 15000, 'GHI9101', 'manutencao'),
-('Ford Ka', 'Vermelho', 3000, 'JKL1213', 'uso'),
-('Volkswagen Gol', 'Azul', 22000, 'MNO1415', 'alugado'),
-('Fiat Argo', 'Preto', 18000, 'PQR1617', 'uso'),
-('Renault Sandero', 'Branco', 9000, 'STU1819', 'manutencao'),
-('Jeep Renegade', 'Cinza', 5000, 'VWX2021', 'alugado'),
-('Hyundai HB20', 'Azul', 11000, 'YZA2324', 'uso'),
-('Nissan Kicks', 'Vermelho', 7000, 'BCD2526', 'alugado');
+INSERT INTO livros (nome, categoria, estado, data_lancamento, status)
+VALUES 
+('Duna', 'Ficção Científica', 'normal', '1965-08-01', 'disponivel'),
+('Neuromancer', 'Ficção Científica', 'normal', '1984-07-01', 'disponivel'),
+('1984', 'Ficção Científica', 'antigo', '1949-06-08', 'disponivel'),
+('Fundação', 'Ficção Científica', 'antigo', '1951-05-01', 'disponivel'),
+('O Senhor dos Anéis: A Sociedade do Anel', 'Fantasia', 'antigo', '1954-07-29', 'disponivel'),
+('O Hobbit', 'Fantasia', 'antigo', '1937-09-21', 'disponivel'),
+('Guerra dos Mundos', 'Ficção Científica', 'antigo', '1898-01-01', 'disponivel'),
+('O Guia do Mochileiro das Galáxias', 'Ficção Científica', 'normal', '1979-10-12', 'disponivel'),
+('As Crônicas de Nárnia: O Leão, a Feiticeira e o Guarda-Roupa', 'Fantasia', 'antigo', '1950-10-16', 'disponivel'),
+('O Nome do Vento', 'Fantasia', 'novo', '2007-03-27', 'disponivel');
+
 
 ```
 
-## Criação da tabela de clientes
-Execute esta query para criar a tabela de clientes:
+## Criação da tabela de estudantes
+Execute esta query para criar a tabela de estudantes:
 ```
-CREATE TABLE clientes (
-    cpf VARCHAR(11) PRIMARY KEY,
-    nome_completo VARCHAR(150) NOT NULL,
-    data_nascimento DATE NOT NULL,
-    email VARCHAR(150),
-    telefone VARCHAR(15)
-);
-```
-
-## Criação da tabela de alugueis
-
-```
-CREATE TABLE alugueis (
+  -- Tabela de estudantes
+CREATE TABLE estudantes (
     id SERIAL PRIMARY KEY,
-    id_carro INT NOT NULL REFERENCES carros(id),
-    cpf_cliente VARCHAR(11) REFERENCES clientes(cpf),
-    data_retirada DATE NOT NULL,
-    data_prevista_entrega DATE NOT NULL,
-    devolucao BOOLEAN DEFAULT FALSE
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL
 );
+
+INSERT INTO estudantes (nome, email)
+VALUES 
+('Albert Einstein', 'albert.einstein@example.com'),
+('Marie Curie', 'marie.curie@example.com'),
+('Isaac Newton', 'isaac.newton@example.com'),
+('Charles Darwin', 'charles.darwin@example.com'),
+('Nikola Tesla', 'nikola.tesla@example.com');
+
 ```
+
 
 # backend
 
@@ -146,22 +118,9 @@ CREATE TABLE alugueis (
 
 Para criar o projeto em Node, **na pasta 'backend'** execute o comando de inicialização e depois converse com o terminal:
 ```
-npm init
+npm init -y
 ```
 
-Perguntas e respostas:
-```
-package name: (backend) dashboardcarros
-version: (1.0.0) <enter>
-description: <enter>
-entry point: (index.js) src/server.js
-test command: <enter>
-git repository: <enter>
-keywords: react, node, postgresql, dashboard
-author: <teuNomeAqui>
-license: (ISC) MIT
-depois: yes e <enter>
-```
 
 Depois disso é pra ter aparecido o arquivo package.json na pasta 'backend'.
 
@@ -242,5 +201,5 @@ npm i cors
 npm start
 ```
 
-Nesse momento, se acessar a url 'http://localhost:3000/carros' no navegador você já deve receber a resposta com um arrays dos 10 carros...
+Nesse momento, se acessar a url 'http://localhost:3000/livros' no navegador você já deve receber a resposta com um array talvez até com uns livrinhos...
 

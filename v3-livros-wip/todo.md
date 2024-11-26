@@ -1,9 +1,23 @@
 //todo
-- modal de aluguel está pedindo cpf e datas. Atualizar para o novo modelo.
+- não mostra modal de aluguel
 
-- botão pra colocar em manutenção não está funcionando
+- botão pra voltar de manutenção não aparece
 
-- Atualizar readme para duas tabelas de carros;
+- falta cadastrar estudante
 
 
 
+<!-- Tarefa:
+Usuário: 
+  id, 
+  nome, 
+  e-mail.
+
+Tarefa: 
+  id da tarefa, 
+  id do usuário, 
+  descrição da tarefa, 
+  nome do setor,
+  prioridade (baixa, média e alta), 
+  data de cadastro e 
+  status (a fazer, fazendo e pronto) -->
