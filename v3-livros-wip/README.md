@@ -17,7 +17,27 @@ Livro:
   categoria,
   estado (novo, normal e antigo), 
   data de lançamento 
-  status (a fazer, fazendo e pronto)
+  status (disponivel, emprestado e indisponivel)
+  -------------------------------------------------
+
+  -- Tabela de estudantes
+CREATE TABLE estudantes (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL
+);
+
+-- Tabela de livros
+CREATE TABLE livros (
+    id SERIAL PRIMARY KEY,
+    id_usuario INTEGER REFERENCES estudantes(id),
+    nome VARCHAR(100) NOT NULL,
+    categoria VARCHAR(50),
+    estado VARCHAR(20) NOT NULL CHECK (estado IN ('novo', 'normal', 'antigo')),
+    data_lancamento DATE NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'disponivel' CHECK (status IN ('disponivel', 'emprestado', 'indisponivel'))
+);
+
 ==================================================
 
 
