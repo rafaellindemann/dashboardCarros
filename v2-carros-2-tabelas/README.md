@@ -19,66 +19,9 @@ Um dashboard simples full JS e postgres para uma locadora de carros, classifican
 Abra o pgAdmin (ou qualquer outra ferramenta que lide com PostgreSQL) e execute o script SQL para criar a tabela de carros:
 
 ```
-CREATE TABLE carros (
-    id SERIAL PRIMARY KEY,
-    modelo VARCHAR(100) NOT NULL,
-    cor VARCHAR(50) NOT NULL,
-    km INTEGER NOT NULL CHECK (km >= 0),
-    placa VARCHAR(10) UNIQUE NOT NULL,
-    situacao VARCHAR(20) NOT NULL CHECK (situacao IN ('uso', 'alugado', 'manutencao'))
-);
+Scrips para criar e popular as tabelas no arquivo 'createDB.md'
 ```
 
-Detalhes dos campos:
-id: Identificador único, gerado automaticamente.
-modelo: Nome do modelo do carro.
-cor: Cor do carro.
-km: Quilometragem do carro, garantindo que seja um valor positivo.
-placa: Placa do carro, garantindo que seja única.
-situacao: Situação do carro, permitindo apenas os valores uso, alugado, ou manutencao.
-
-
-## Criação de registros iniciais pra testes
-Execute esta query para inserir 10 carros para iniciar a diversão:
-```
-INSERT INTO carros (modelo, cor, km, placa, situacao) VALUES
-('Honda Civic', 'Preto', 12000, 'ABC1234', 'uso'),
-('Toyota Corolla', 'Branco', 8500, 'DEF5678', 'alugado'),
-('Chevrolet Onix', 'Prata', 15000, 'GHI9101', 'manutencao'),
-('Ford Ka', 'Vermelho', 3000, 'JKL1213', 'uso'),
-('Volkswagen Gol', 'Azul', 22000, 'MNO1415', 'alugado'),
-('Fiat Argo', 'Preto', 18000, 'PQR1617', 'uso'),
-('Renault Sandero', 'Branco', 9000, 'STU1819', 'manutencao'),
-('Jeep Renegade', 'Cinza', 5000, 'VWX2021', 'alugado'),
-('Hyundai HB20', 'Azul', 11000, 'YZA2324', 'uso'),
-('Nissan Kicks', 'Vermelho', 7000, 'BCD2526', 'alugado');
-
-```
-
-## Criação da tabela de clientes
-Execute esta query para criar a tabela de clientes:
-```
-CREATE TABLE clientes (
-    cpf VARCHAR(11) PRIMARY KEY,
-    nome_completo VARCHAR(150) NOT NULL,
-    data_nascimento DATE NOT NULL,
-    email VARCHAR(150),
-    telefone VARCHAR(15)
-);
-```
-
-## Criação da tabela de alugueis
-
-```
-CREATE TABLE alugueis (
-    id SERIAL PRIMARY KEY,
-    id_carro INT NOT NULL REFERENCES carros(id),
-    cpf_cliente VARCHAR(11) REFERENCES clientes(cpf),
-    data_retirada DATE NOT NULL,
-    data_prevista_entrega DATE NOT NULL,
-    devolucao BOOLEAN DEFAULT FALSE
-);
-```
 
 # backend
 
@@ -87,22 +30,10 @@ CREATE TABLE alugueis (
 
 Para criar o projeto em Node, **na pasta 'backend'** execute o comando de inicialização e depois converse com o terminal:
 ```
-npm init
+npm init -y
 ```
 
-Perguntas e respostas:
-```
-package name: (backend) dashboardcarros
-version: (1.0.0) <enter>
-description: <enter>
-entry point: (index.js) src/server.js
-test command: <enter>
-git repository: <enter>
-keywords: react, node, postgresql, dashboard
-author: <teuNomeAqui>
-license: (ISC) MIT
-depois: yes e <enter>
-```
+
 
 Depois disso é pra ter aparecido o arquivo package.json na pasta 'backend'.
 

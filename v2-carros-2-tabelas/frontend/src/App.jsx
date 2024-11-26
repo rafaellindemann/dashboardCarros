@@ -16,7 +16,13 @@ function App() {
     email: '',
   });
 
+  // versão compacta que serve para todos os status
   const filtroCarrosPorStatus = (status) => carros.filter(carro => carro.status === status);
+
+  // versão para criar uma função para cada status diferente (usei no disponivel para exemplificar)
+  function filtrarDisponiveis(){
+    return carros.filter(carro => carro.status === 'disponivel');
+  }
 
   function adicionarCarro() {
     setIsAddingCarro(true);
@@ -91,7 +97,10 @@ function App() {
       <div className="dashboard">
         <div className="coluna-dashboard">
           <h2>Disponível</h2>
-          {filtroCarrosPorStatus('disponivel').map(carro => (
+          {/* {filtroCarrosPorStatus('disponivel').map(carro => (
+            <Card key={carro.id} carro={carro} buscarCarros={buscarCarros} clientes={clientes} />
+          ))} */}
+          {filtrarDisponiveis().map(carro => (
             <Card key={carro.id} carro={carro} buscarCarros={buscarCarros} clientes={clientes} />
           ))}
         </div>

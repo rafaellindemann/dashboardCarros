@@ -60,7 +60,7 @@ function Card({ carro, buscarCarros }) {
       <h3>{carro.modelo}</h3>
       <p>Cor: {carro.cor}</p>
       <p>KM: {carro.km}</p>
-      <p>Situação: {carro.status}</p>
+      {/* <p>Situação: {carro.status}</p> */}
       
       {carro.status === 'disponivel' && (
         <>
